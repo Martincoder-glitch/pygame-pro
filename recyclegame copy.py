@@ -63,13 +63,19 @@ while run==True:
             pygame.quit()
         if event.type ==pygame.MOUSEMOTION:
                 Pos=pygame.mouse.get_pos()
-                r1.rect=Pos
+                r1.rect.center=Pos
     screen.fill("red")
     screen.blit(Renewable,(0,0))
     recycle_group.draw(screen)
     Plastic_group.draw(screen)
     bag_group.draw(screen)
     itemlist= pygame.sprite.spritecollide(r1,bag_group,True)
-        
+    for item in itemlist:
+        score+=1
+        text=font.render("score"+str(score),True,"red")
+    itemlist2= pygame.sprite.spritecollide(r1,Plastic_group,True)
+    for item in itemlist2:
+        score-=1
+        text=font.render("score"+str(score),True,"red")
     screen. blit(text,(100,50))
     pygame.display.update()
